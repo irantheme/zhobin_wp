@@ -15,12 +15,6 @@
     // Get json data with api
     $.getJSON(wpData.root_url + '/wp-json/json/v1/post', (result) => {
       $('#posts .container .grid-masonry').append(`
-          ${() => {
-            if (result.post.length) {
-              $('#loading-more').hide(100);
-            }
-            return;
-          }}
           ${result.post
             .map(
               (item) => `
@@ -417,7 +411,7 @@
       horizontalOrder: true,
       fitWidth: true,
       originLeft: false,
-      transitionDuration: '0.8s',
+      transitionDuration: '0.5s',
       // initLayout: false,
       // disable window resize behavior
       // resize: false,
