@@ -4,8 +4,10 @@
 =============================================================== */
   $('#loading-more').on('click', function () {
     $(this).find('span i').addClass('animate-rotate');
-    loadingPosts();
-    $(this).find('span i').removeClass('animate-rotate');
+    setTimeout(loadingPosts(), 1000);
+    setTimeout(() => {
+      $(this).find('span i').removeClass('animate-rotate');
+    }, 1001);
   });
 
   // Get json data posts
@@ -13,11 +15,12 @@
     // Get json data with api
     $.getJSON(wpData.root_url + '/wp-json/json/v1/post', (result) => {
       $('#posts .container .grid-masonry').append(`
-          ${
-            result.post.length
-              ? ''
-              : '<div class="search-not-found">نتیجه ای برای کلمات جستجو شده یافت نشد</div>'
-          }
+          ${() => {
+            if (result.post.length) {
+              $('#loading-more').hide(100);
+            }
+            return;
+          }}
           ${result.post
             .map(
               (item) => `
@@ -100,8 +103,6 @@
                             }
                             return cate_temp;
                           })()}
-                          </div>
-                          <?php endif; ?>
                         </a>
                       </div>
                       `;
@@ -130,6 +131,27 @@
                       return output;
                     }
                   })()}
+                  <div class="post-content">
+                    <div class="post-date">
+                      <span>${item.date}</span>
+                    </div>
+                    <div class="post-heading">
+                      <h2><a href="${item.permalink}">${item.title}</a></h2>
+                    </div>
+                    <div class="post-text">
+                      <p>${item.content}</p>
+                    </div>
+                  </div>
+                  <div class="post-info">
+                    <!-- Post author -->
+                    <div class="post-author">
+                      <img src="${item.authorAvatar}" alt="Author">
+                      <div>
+                        <cite>${item.author}</cite>
+                        <span>${item.authorNickname}</span>
+                      </div>
+                    </div>
+                  </div>
                 </article>
               </div>
             `
