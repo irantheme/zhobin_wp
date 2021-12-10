@@ -44,6 +44,7 @@
                           <div class="swiper-slide"><img src="${item.gallery[i]}" alt="گالری"></div>
                         `;
                       }
+                      output += '</div>';
                       // Add arrow slider
                       output += `
                         <div class="post-image-slider-buttons">
@@ -57,23 +58,78 @@
                       output += `
                         ${(() => {
                           if (item.category) {
+                            // Category holder temp
+                            var cate_temp = '';
+                            // Add parent tag
+                            cate_temp += '<div class="post-category">';
+                            // Loop from keys and append to cate temp
                             for (let i = 0; i < item.category.length; i++) {
-                              '<span>' + item.category[i] + '</span>';
+                              let key = Object.keys(item.category[i]);
+                              cate_temp += '<span>' + key + '</span>';
                             }
+                            // Add ending parent tag
+                            cate_temp += '</div>';
                           }
+                          return cate_temp;
                         })()}
                       `;
                       // Add ending tags
                       output += `
                         </div>
                         </a>
-                        </div>
+                      `;
+                      return output;
+                    } else if (item.imageSrc) {
+                      let output = `
+                        <div class="post-image">
+                        <a href="${item.permalink}" class="post-image-link">
+                          <img src="${item.imageSrc}" alt="Image post">
+                          ${(() => {
+                            if (item.category) {
+                              // Category holder temp
+                              var cate_temp = '';
+                              // Add parent tag
+                              cate_temp += '<div class="post-category">';
+                              // Loop from keys and append to cate temp
+                              for (let i = 0; i < item.category.length; i++) {
+                                let key = Object.keys(item.category[i]);
+                                cate_temp += '<span>' + key + '</span>';
+                              }
+                              // Add ending parent tag
+                              cate_temp += '</div>';
+                            }
+                            return cate_temp;
+                          })()}
+                          </div>
+                          <?php endif; ?>
+                        </a>
+                      </div>
+                      `;
+                      return output;
+                    } else {
+                      let output = `
+                          ${(() => {
+                            if (item.category) {
+                              // Category holder temp
+                              var cate_temp = '';
+                              // Add parent tag
+                              cate_temp += '<div class="post-category">';
+                              // Loop from keys and append to cate temp
+                              for (let i = 0; i < item.category.length; i++) {
+                                let key = Object.keys(item.category[i]);
+                                let link = item.category[i][key];
+                                cate_temp +=
+                                  '<a href="' + link + '">' + key + '</a>';
+                              }
+                              // Add ending parent tag
+                              cate_temp += '</div>';
+                            }
+                            return cate_temp;
+                          })()}
                       `;
                       return output;
                     }
                   })()}
-                  <b>${item.title}</b>
-                  <p>${item.content}</p>
                 </article>
               </div>
             `
@@ -81,6 +137,7 @@
             .join('')}
         `);
       masonryPkgInit();
+      galleryMainPosts();
     });
   }
 
