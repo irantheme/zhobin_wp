@@ -642,6 +642,7 @@ body {
   padding: 0.5rem 0.25rem;
   margin: 0 0.5rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 #content .content-category ul li a::after {

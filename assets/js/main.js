@@ -1,5 +1,55 @@
 (function ($) {
   /* ===============================================================
+  Categories adding toggle active & realign layout
+=============================================================== */
+  // Back to all posts
+  $('#all-categories').on('click', function () {
+    // Remove all active list category
+    $('.content-category ul li a').removeClass('active');
+    // Add active to clicked category
+    $(this).addClass('active');
+    $('#posts .post-holder[data-cate]').show();
+    masonryPkgInit();
+  });
+  // Categorize and alignment posts
+  $('.content-category ul li a:not(#all-categories)').on('click', function () {
+    // Remove all active list category
+    $('.content-category ul li a').removeClass('active');
+    // Add active to clicked category
+    $(this).addClass('active');
+    // Remove all posts
+    $('#posts .post-holder[data-cate]').hide();
+    // Get current category data
+    var baseData = $(this).data('cate');
+    var posts = $('#posts .post-holder[data-cate]');
+    // Loop from posts
+    for (let i = 0; i < posts.length; i++) {
+      // Split data post
+      let dataPost = $(posts[i]).attr('data-cate').split(',');
+      // Remove last additional index array
+      dataFiltered = dataPost.filter(function (el) {
+        return el != '';
+      });
+      // Check duplicated data
+      let uniqueData = [];
+      $.each(dataFiltered, function (i, el) {
+        if ($.inArray(el, uniqueData) === -1) uniqueData.push(el);
+      });
+      console.log(uniqueData);
+      // Loop from data filtered post
+      for (let j = 0; j < uniqueData.length; j++) {
+        // Check base data (main) with post data
+        if (uniqueData[j] == baseData) {
+          // Display same cate post
+          $(posts[i]).show();
+          break;
+        }
+      }
+    }
+    masonryPkgInit();
+  });
+
+  /* ===============================================================
   Load more post Json
 =============================================================== */
   $('#loading-more').on('click', function () {
@@ -153,7 +203,6 @@
             .join('')}
         `);
       masonryPkgInit();
-      galleryMainPosts();
     });
   }
 
@@ -199,10 +248,11 @@
               : '<div class="search-not-found">نتیجه ای برای کلمات جستجو شده یافت نشد</div>'
           }
           <div class="grid-masonry">
+            <div class="grid-sizer"></div>
             ${result.generalInfo
               .map(
                 (item) => `
-                <div class="search-holder">
+                <div class="search-holder grid-item">
                   <div class="search-result-box">
                     <a href="${item.permalink}">
                       ${
@@ -224,6 +274,7 @@
         `);
         // Stop spinner!
         searchIconShow();
+        masonryPkgInit();
       }
     );
   }
@@ -405,11 +456,11 @@
     // init Masonry
     var $grid = $('.grid-masonry').masonry({
       itemSelector: '.grid-item',
-      percentPosition: true,
       columnWidth: '.grid-sizer',
+      percentPosition: true,
       // gutter: 20,
       horizontalOrder: true,
-      fitWidth: true,
+      // fitWidth: true,
       originLeft: false,
       transitionDuration: '0.5s',
       // initLayout: false,
@@ -424,9 +475,8 @@
     $grid.imagesLoaded().progress(function () {
       $grid.masonry('layout');
     });
-    // $(window).resize(() => {
-    //   $grid.masonry();
-    // });
+    $grid.masonry('reloadItems');
+    $grid.masonry('layout');
     $('#loading-more').click(() => {
       // layout Masonry after each image loads
       setTimeout(() => {

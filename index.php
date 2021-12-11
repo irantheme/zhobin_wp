@@ -19,15 +19,24 @@
       <div class="content-category">
         <ul>
           <li>
-            <a href="#" class="active">همه</a>
+            <a id="all-categories" class="active">همه</a>
           </li>
-          <?php wp_list_categories(array(
-            'depth' => 1,
-            'style' => 'list',
-            'separator' => '',
-            'show_option_none' => '',
-            'title_li' => ''
-          )); ?>
+          <?php
+          $categories = get_categories(array(
+            'orderby' => 'name',
+            'parent' => 0
+          ));
+          foreach ($categories as $category) {
+            echo '<li><a data-cate="' . $category->term_id . '">' . $category->name . '</a></li>';
+          }
+          // wp_list_categories(array(
+          //   'depth' => 1,
+          //   'style' => 'list',
+          //   'separator' => '',
+          //   'show_option_none' => '',
+          //   'title_li' => ''
+          // )); 
+          ?>
         </ul>
       </div>
       <?php endif; ?>
@@ -51,7 +60,28 @@
           <div class="grid-sizer"></div>
           <?php while ( $post_custom_types->have_posts()) : $post_custom_types->the_post(); ?>
           <!-- Post -->
-          <div class="post-holder grid-item">
+          <?php
+          // Get parent id category of post
+          $category = get_the_category();
+          $category_parent_list = array();
+          $category_parents_id = '';
+          foreach($category as $cate) {
+            if ($cate->parent) {
+              // From your child category, grab parent ID
+              $parent = $cate->parent;
+
+              // Load object for parent category
+              $parent_id = get_category($parent);
+
+              // Grab a category name
+              $parent_id = $parent_id->term_id;
+              $category_parents_id .= strval($parent_id).',';
+            } else {
+              $category_parents_id .= strval($cate->term_id).',';
+            }
+          }
+          ?>
+          <div class="post-holder grid-item" data-cate="<?php echo $category_parents_id; ?>">
             <article class="post">
 
               <?php
@@ -182,7 +212,7 @@
             </article>
           </div>
           <?php endwhile; ?>
-
+          <?php wp_reset_postdata(); ?>
         </div>
       </div>
     </main>
