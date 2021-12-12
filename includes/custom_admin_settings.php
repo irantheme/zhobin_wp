@@ -160,6 +160,14 @@ class WordPress_Custom_Admin_Settings {
 					'type' => 'image',
 					'default' => '',
 					'placeholder' => ''
+				),
+				array(
+					'id' => 'footer_copyright_text',
+					'label' => __( 'متن کپی رایت فوتر' ),
+					'description' => __( 'متن کپی رایت انتخابی شما جهت نمایش در فوتر.' ),
+					'type' => 'text',
+					'default' => __( 'کلیه حقوق مادی و معنوی این سایت محفوظ است.', $this->textdomain ),
+					'placeholder' => __( 'متن خود را وارد کنید.', $this->textdomain )
 				)
 			)
 		);

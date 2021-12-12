@@ -58,10 +58,12 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
+          <?php if ( get_option( 'zhobin_footer_copyright_text' ) ) : ?>
           <!-- Copy right -->
           <div class="copyright">
-            کلیه حقوق مادی و معنوی این سایت محفوظ است.
+            <?php echo get_option( 'zhobin_footer_copyright_text' ); ?>
           </div>
+          <?php endif; ?>
         </div>
         <div class="col-lg-6">
           <!-- Social -->

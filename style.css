@@ -661,6 +661,12 @@ body {
   transform: scaleX(1);
 }
 
+#content .content-category ul li a:hover,
+#content .content-category ul li a.active {
+  background: var(--bs-gray-500);
+  /* color: var(--bs-white); */
+}
+
 /* Posts ######################## */
 
 #content #posts .container {
