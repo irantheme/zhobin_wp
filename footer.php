@@ -1,80 +1,38 @@
-<!-- Latest comments ################################### -->
-  <section id="latest-comments" style="background-image: url('images/header.jpg');">
+  <?php
+  $latestCommentsQuery = new WP_Comment_Query();
+  $comments = $latestCommentsQuery->query( array( 
+    'number' => 6
+  ) );
+
+  if ( $comments ) :
+  ?>
+  <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_latest_comments_bg'), 'full'); ?>
+  <!-- Latest comments ################################### -->
+  <section id="latest-comments" style="background-image: url('<?php echo $latest_comments_bg[0]; ?>');">
     <div class="container">
       <!-- Comments list -->
       <div class="comments-list">
         <!-- Lable of comments -->
-        <small id="label-of-comments">دیدگاه ها</small>
+        <small id="label-of-comments">آخرین دیدگاه ها</small>
         <div class="comments-swiper">
           <!-- Swiper -->
           <div class="swiper comments-swiper">
             <div class="swiper-wrapper">
+              <?php
+              foreach ($comments as $comment) :
+              ?>
               <!-- Comment item -->
               <div class="swiper-slide">
                 <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
+                  <?php echo get_avatar( $comment->comment_author_email, 80 ); ?>
                   <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
+                    <cite><?php echo get_comment_author( $comment->comment_ID ); ?></cite>
+                    <p><?php echo apply_filters( 'get_comment_text', $comment->comment_content ); ?></p>
+                    <a href="<?php echo get_permalink( $comment->comment_post_ID ); ?>">مشاهده</a>
                   </div>
                 </div>
               </div>
-              <!-- Comment item -->
-              <div class="swiper-slide">
-                <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
-                  <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Comment item -->
-              <div class="swiper-slide">
-                <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
-                  <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Comment item -->
-              <div class="swiper-slide">
-                <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
-                  <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Comment item -->
-              <div class="swiper-slide">
-                <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
-                  <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Comment item -->
-              <div class="swiper-slide">
-                <div class="comment-item">
-                  <img src="images/user.png" alt="Avatar">
-                  <div>
-                    <cite>محمد ملک زاده</cite>
-                    <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی...</p>
-                    <a href="#">مشاهده</a>
-                  </div>
-                </div>
-              </div>
+              <?php endforeach; ?>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -82,6 +40,7 @@
       </div>
     </div>
   </section>
+  <?php endif; ?>
 
   <!-- Footer ###################################### -->
   <footer id="footer">
@@ -90,8 +49,10 @@
         <div class="col-lg-6 offset-lg-6">
           <!-- Heading footer -->
           <div class="heading-footer">
-            <b>ژوبین</b>
-            <em>تفاوت ها را رقم خواهیم زد</em>
+            <b><?php bloginfo('name'); ?></b>
+            <?php if ( get_option('zhobin_banner') ) : ?>
+            <em><?php echo get_option('zhobin_banner'); ?></em>
+            <?php endif; ?>
           </div>
         </div>
       </div>

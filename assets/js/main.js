@@ -62,7 +62,7 @@
       // Assign length unload post
       postUnloadCount = result.post.length;
       // Check count of current post and unload post
-      if (postCount >= postUnloadCount) $('#loading-more').hide();
+      if (postCount >= postUnloadCount) $('.load-more').hide();
     });
   }
   hideLoadingButton();

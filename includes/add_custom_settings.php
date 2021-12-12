@@ -148,6 +148,22 @@ class WordPress_Custom_Admin_Settings {
 			)
 		);
 
+		// footer configuration fields data
+		$settings['footer'] = array(
+			'title' => __( 'فوتر', $this->textdomain ),
+			'description' => __( 'برخی از تنظیمات محتوای فوتر', $this->textdomain ),
+			'fields' => array(
+				array(
+					'id' => 'latest_comments_bg',
+					'label' => __( 'تصویر پس زمینه آخرین دیدگاه ها' ),
+					'description' => __( 'تصویری مورد نظر شما به صورت پشت زمینه و افقی با کمی افکت نمایش داده می شود..' ),
+					'type' => 'image',
+					'default' => '',
+					'placeholder' => ''
+				)
+			)
+		);
+
 		$settings = apply_filters( 'plugin_settings_fields', $settings );
 
 		return $settings;

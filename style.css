@@ -1105,6 +1105,7 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--bs-gray-500);
+  margin-bottom: 0;
 }
 
 #latest-comments .comments-list .comment-item div a {
