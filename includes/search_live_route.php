@@ -8,7 +8,8 @@
 function registerSearch() {
   register_rest_route( 'json/v1', 'search', array(
     'methods' => WP_REST_SERVER::READABLE,
-    'callback' => 'resultsSearch'
+    'callback' => 'resultsSearch',
+    'permission_callback' => '__return_true'
   ) );
 }
 // Run above

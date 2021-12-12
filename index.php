@@ -1,6 +1,6 @@
   <?php get_header(); ?>
 
-  <!-- Content #####################3 -->
+  <!-- Content ###################### -->
   <section id="content">
     <div class="container">
 
@@ -63,7 +63,7 @@
           <?php
           // Get parent id category of post
           $category = get_the_category();
-          $category_parent_list = array();
+          // $category_parent_list = array();
           $category_parents_id = '';
           foreach($category as $cate) {
             if ($cate->parent) {
@@ -95,16 +95,17 @@
               // Get gallery post, (true, false) -> related to html output or data
               $gallery_post = get_post_gallery( get_the_ID(), false);
 
+              // Init url video
+              $video_url =  wp_get_attachment_url( get_the_ID() );
+              $videoElement = wp_video_shortcode( array( 'src' => $video_url ) );
+
               // Check video format
-              if ( $post_format == 'video' ) :
+              if ( $post_format == 'video' && $videoElement ) :
               ?>
               <!-- Post video -->
               <div class="post-video">
                 <?php
-                $video_url =  wp_get_attachment_url( get_the_ID() );
-                echo wp_video_shortcode( array(
-                  'src' => $video_url
-                ) );
+                echo $videoElement;
                 ?>
               </div>
 

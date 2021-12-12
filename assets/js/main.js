@@ -68,11 +68,17 @@
           ${result.post
             .map(
               (item) => `
-              <div class="post-holder grid-item">
+              <div class="post-holder grid-item" data-cate="${
+                item.dataCategory
+              }">
                 <article class="post">
                   ${(() => {
-                    if (item.postFormat == 'video') {
-                      return item.video;
+                    // Check video elements
+                    if (item.postFormat == 'video' && item.video) {
+                      let videoOutput = `
+                      <div class="post-video">${item.video}</div>
+                      `;
+                      return videoOutput;
                     } else if (item.postFormat == 'gallery' && item.gallery) {
                       // Init output with essential tags and thumbnail (If has thumbnail)
                       let output = `

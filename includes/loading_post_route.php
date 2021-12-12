@@ -8,7 +8,8 @@
 function registerLoadingPosts() {
   register_rest_route( 'json/v1', 'post', array(
     'methods' => WP_REST_SERVER::READABLE,
-    'callback' => 'resultsPosts'
+    'callback' => 'resultsPosts',
+    'permission_callback' => '__return_true'
   ) );
 }
 // Run above
@@ -62,6 +63,25 @@ function resultsPosts( $data ) {
       $video_url =  wp_get_attachment_url( get_the_ID() );
       $video_temp = wp_video_shortcode( array( 'src' => $video_url ) );
     }
+    // Get parent id category of post
+    $category = get_the_category();
+    // $category_parent_list = array();
+    $category_parents_id = '';
+    foreach($category as $cate) {
+      if ($cate->parent) {
+        // From your child category, grab parent ID
+        $parent = $cate->parent;
+
+        // Load object for parent category
+        $parent_id = get_category($parent);
+
+        // Grab a category name
+        $parent_id = $parent_id->term_id;
+        $category_parents_id .= strval($parent_id).',';
+      } else {
+        $category_parents_id .= strval($cate->term_id).',';
+      }
+    }
     // Appending data to results array
     if ( get_post_type() == 'post' ) {
       array_push( $results['post'], array(
@@ -76,7 +96,8 @@ function resultsPosts( $data ) {
         'date' => get_the_date('j, F Y'),
         'author' => get_the_author_posts_link(),
         'authorNickname' => get_the_author_meta('nickname'),
-        'authorAvatar' => get_avatar_url(get_the_author_meta('ID'))
+        'authorAvatar' => get_avatar_url(get_the_author_meta('ID')),
+        'dataCategory' => $category_parents_id
       ) );
     }
   }
