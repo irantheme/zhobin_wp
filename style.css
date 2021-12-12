@@ -596,7 +596,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 #content .content-heading h2 {
@@ -633,14 +633,13 @@ body {
 }
 
 #content .content-category ul li {
-  font-size: 0.85rem;
-  margin: 1rem 0;
+  font-size: 0.8rem;
 }
 
 #content .content-category ul li a {
+  background: var(--bs-gray-400);
   position: relative;
-  padding: 0.5rem 0.25rem;
-  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
   overflow: hidden;
   cursor: pointer;
 }

@@ -52,20 +52,46 @@
   /* ===============================================================
   Load more post Json
 =============================================================== */
+  // Check remaining post for hiding button load
+  function hideLoadingButton() {
+    // Get current body post length
+    $.getJSON(wpData.root_url + '/wp-json/json/v1/post', (result) => {
+      let postCount = $('#posts .post-holder').length;
+      // Get unload post length
+      var postUnloadCount = 0;
+      // Assign length unload post
+      postUnloadCount = result.post.length;
+      // Check count of current post and unload post
+      if (postCount >= postUnloadCount) $('#loading-more').hide();
+    });
+  }
+  hideLoadingButton();
+
+  // Loading remaining of posts in click load button
   $('#loading-more').on('click', function () {
     $(this).find('span i').addClass('animate-rotate');
     setTimeout(loadingPosts(), 1000);
     setTimeout(() => {
       $(this).find('span i').removeClass('animate-rotate');
     }, 1001);
+    hideLoadingButton();
   });
 
   // Get json data posts
   function loadingPosts() {
     // Get json data with api
     $.getJSON(wpData.root_url + '/wp-json/json/v1/post', (result) => {
+      // Temporary posts of result post
+      let posts = result.post;
+      // Get length of body posts
+      let currentPostsCount = $('#posts .post-holder').length;
+      // Slicing body posts from loaded posts
+      posts.splice(0, currentPostsCount);
+      // Divide posts to sliced posts
+      posts = posts.splice(0, 6);
+      // Append rest posts
       $('#posts .container .grid-masonry').append(`
-          ${result.post
+          ${posts
             .map(
               (item) => `
               <div class="post-holder grid-item" data-cate="${
