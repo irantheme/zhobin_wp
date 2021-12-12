@@ -844,7 +844,7 @@ body {
 }
 
 #content #posts .post .post-info .post-author {
-  padding: 1rem;
+  padding: 0.5rem;
   transition: 0.3s ease-out;
   background: var(--bs-gray-100);
 }
@@ -863,26 +863,33 @@ body {
 
 #content #posts .post .post-info .post-author img {
   float: right;
-  width: 4rem;
-  height: 4rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
 }
 
 #content #posts .post .post-info .post-author div {
-  margin-right: 5rem;
+  margin-right: 3.25rem;
   display: flex;
   flex-direction: column;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+#content #posts .post .post-info .post-author div cite {
+  line-height: 1;
 }
 
 #content #posts .post .post-info .post-author div cite a {
-  line-height: 1rem;
-  font-size: 0.8rem;
+  line-height: 0;
+  font-size: 0.7rem;
   color: var(--bs-gray-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #content #posts .post .post-info .post-author div span {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: vaR(--bs-gray-500);
 }
 

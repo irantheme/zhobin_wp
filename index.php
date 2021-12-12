@@ -204,9 +204,7 @@
                   <img src="<?php echo get_avatar_url(get_the_author_meta('ID')); ?>" alt="Author">
                   <div>
                     <cite><?php echo get_the_author_posts_link(); ?></cite>
-                    <?php if ( get_the_author_meta('nickname') ) : ?>
-                    <span><?php echo get_the_author_meta('nickname'); ?></span>
-                    <?php endif; ?>
+                    <span><?php echo author_role_text( get_the_author_meta('ID') ); ?></span>
                   </div>
                 </div>
               </div>

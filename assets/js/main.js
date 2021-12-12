@@ -30,12 +30,11 @@
       dataFiltered = dataPost.filter(function (el) {
         return el != '';
       });
-      // Check duplicated data
+      // Check duplicated data and destroy
       let uniqueData = [];
       $.each(dataFiltered, function (i, el) {
         if ($.inArray(el, uniqueData) === -1) uniqueData.push(el);
       });
-      console.log(uniqueData);
       // Loop from data filtered post
       for (let j = 0; j < uniqueData.length; j++) {
         // Check base data (main) with post data

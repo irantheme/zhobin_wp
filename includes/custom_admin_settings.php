@@ -154,7 +154,7 @@ class WordPress_Custom_Admin_Settings {
 			'description' => __( 'برخی از تنظیمات محتوای فوتر', $this->textdomain ),
 			'fields' => array(
 				array(
-					'id' => 'latest_comments_bg',
+					'id' => 'footer_latest_comments_bg',
 					'label' => __( 'تصویر پس زمینه آخرین دیدگاه ها' ),
 					'description' => __( 'تصویری مورد نظر شما به صورت پشت زمینه و افقی با کمی افکت نمایش داده می شود..' ),
 					'type' => 'image',

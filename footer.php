@@ -6,7 +6,7 @@
 
   if ( $comments ) :
   ?>
-  <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_latest_comments_bg'), 'full'); ?>
+  <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_footer_latest_comments_bg'), 'full'); ?>
   <!-- Latest comments ################################### -->
   <section id="latest-comments" style="background-image: url('<?php echo $latest_comments_bg[0]; ?>');">
     <div class="container">
@@ -60,7 +60,7 @@
         <div class="col-lg-6">
           <!-- Copy right -->
           <div class="copyright">
-            کلیه حقوق مادی و معنوی این سایت محفوظ است. &copy; Copyright 2021
+            کلیه حقوق مادی و معنوی این سایت محفوظ است.
           </div>
         </div>
         <div class="col-lg-6">
