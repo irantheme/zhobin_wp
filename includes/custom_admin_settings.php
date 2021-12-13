@@ -56,25 +56,6 @@ class WordPress_Custom_Admin_Settings {
 		// add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
 	}
 
-	// /**
-	//  * Load settings JS & CSS
-	//  * @return void
-	//  */
-	// public function settings_assets() {
-
-	// 	// We're including the farbtastic script & styles here because they're needed for the colour picker
-	// 	// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the wpt-admin-js script below
-	// 	wp_enqueue_style( 'farbtastic' );
-  //   wp_enqueue_script( 'farbtastic' );
-
-  //   // We're including the WP media scripts here because they're needed for the image upload field
-  //   // If you're not including an image upload then you can leave this function call out
-  //   wp_enqueue_media();
-
-  //   wp_register_script( 'wpt-admin-js', $this->assets_url . 'js/admin.js', array( 'farbtastic', 'jquery' ), '1.0.0' );
-  //   wp_enqueue_script( 'wpt-admin-js' );
-	// }
-
 	/**
 	 * Add settings link to plugin list table
 	 * @param  array $links Existing links

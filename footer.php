@@ -68,11 +68,15 @@
         <div class="col-lg-6">
           <!-- Social -->
           <div class="social">
-            <a href="#"><i class="lni lni-facebook"></i></a>
-            <a href="#"><i class="lni lni-twitter"></i></a>
-            <a href="#"><i class="lni lni-instagram"></i></a>
-            <a href="#"><i class="lni lni-whatsapp"></i></a>
-            <a href="#"><i class="lni lni-telegram"></i></a>
+            <?php
+            // Custom wp nav menu items (Social media)
+            $socialMenu = get_nav_menu_locations(); // Where menu1 can be ID, slug or title
+            $socialMenuID = $socialMenu['socialMediaLocation'];
+            $socialMediaItems = wp_get_nav_menu_items($socialMenuID);
+            foreach($socialMediaItems as $social){
+              echo '<a href="' . $social->url . '"><i class="lni lni-' . $social->title . '"></i></a>';
+            }
+            ?>
           </div>
         </div>
       </div>

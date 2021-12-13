@@ -9,7 +9,9 @@
 function include_features()
 {
   // Register nav header
-  register_nav_menu('headerNavLocation', 'Header Navigate Location');
+  register_nav_menu('headerNavLocation', 'منوی شناور اصلی');
+  // Register nav social media
+  register_nav_menu('socialMediaLocation', 'شبکه های اجتماعی');
   // Add title tag
   add_theme_support('title-tag');
   // Add thumbnail image to posts
