@@ -148,88 +148,14 @@
       </div>
     </main>
   </section>
-
-  <!-- Comments #####################################33 -->
-  <section id="comments">
-    <div class="container">
-      <!-- Comments holder -->
-      <div class="comments-holder">
-        <!-- Comments list -->
-        <ul class="comments-list">
-          <li class="comment-item">
-            <!-- Avatar -->
-            <div class="comment-avatar">
-              <img src="images/user.png" alt="Avatar">
-            </div>
-            <!-- Content -->
-            <div class="comment-content">
-              <div class="comment-heading">
-                <b>محمد ملک زاده</b>
-                <span>۲۸ اردیبهشت ۱۴۰۰ - ۲۹ دقیقه قبل</span>
-              </div>
-              <div class="comment-body">
-                <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                  استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای در
-                  بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-              </div>
-              <div class="comment-options">
-                <a href="#">پاسخ</a>
-                <a href="#">ویرایش</a>
-              </div>
-            </div>
-          </li>
-          <ul class="comments-list">
-            <li class="comment-item">
-              <!-- Avatar -->
-              <div class="comment-avatar">
-                <img src="images/user.png" alt="Avatar">
-              </div>
-              <!-- Content -->
-              <div class="comment-content">
-                <div class="comment-heading">
-                  <b>محمد ملک زاده</b>
-                  <span>۲۸ اردیبهشت ۱۴۰۰ - ۲۹ دقیقه قبل</span>
-                </div>
-                <div class="comment-body">
-                  <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                    استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای
-                    در
-                    بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-                </div>
-                <div class="comment-options">
-                  <a href="#">پاسخ</a>
-                  <a href="#">ویرایش</a>
-                </div>
-              </div>
-            </li>
-            <li class="comment-item">
-              <!-- Avatar -->
-              <div class="comment-avatar">
-                <img src="images/user.png" alt="Avatar">
-              </div>
-              <!-- Content -->
-              <div class="comment-content">
-                <div class="comment-heading">
-                  <b>محمد ملک زاده</b>
-                  <span>۲۸ اردیبهشت ۱۴۰۰ - ۲۹ دقیقه قبل</span>
-                </div>
-                <div class="comment-body">
-                  <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                    استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای
-                    در
-                    بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-                </div>
-                <div class="comment-options">
-                  <a href="#">پاسخ</a>
-                  <a href="#">ویرایش</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </ul>
-      </div>
-    </div>
-  </section>
+  
+  <?php
+  // If comments are open or we have at least one comment, load up the comment template.
+  if ( comments_open() || get_comments_number() ) :
+      comments_template();
+  endif;
+  ?>
+  
 
   <?php endwhile; ?>
 

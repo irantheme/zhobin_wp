@@ -36,10 +36,6 @@ function add_theme_sources()
     wp_enqueue_style('swiper-css', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css');
     // Adding aos css
     wp_enqueue_style('aos-css', get_template_directory_uri() . '/assets/css/aos.css');
-    // Adding flexmasonry css
-    // wp_enqueue_style('flexmasonry-css', get_template_directory_uri() . '/assets/css/flexmasonry.css');
-    // Adding inputs css
-    wp_enqueue_style('inputs-css', get_template_directory_uri() . '/assets/css/inputs.css');
     // Adding style sheet (main)
     wp_enqueue_style('style', get_stylesheet_uri());
     // Access to wordpress features with custom script js

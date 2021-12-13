@@ -1,17 +1,17 @@
   <?php
   $latestCommentsQuery = new WP_Comment_Query();
-  $comments = $latestCommentsQuery->query( array( 
+  $latestComments = $latestCommentsQuery->query( array( 
     'number' => 6
   ) );
 
-  if ( $comments ) :
+  if ( $latestComments ) :
   ?>
   <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_footer_latest_comments_bg'), 'full'); ?>
   <!-- Latest comments ################################### -->
   <section id="latest-comments" style="background-image: url('<?php echo $latest_comments_bg[0]; ?>');">
     <div class="container">
       <!-- Comments list -->
-      <div class="comments-list">
+      <div class="latest-comments-list">
         <!-- Lable of comments -->
         <small id="label-of-comments">آخرین دیدگاه ها</small>
         <div class="comments-swiper">
@@ -19,7 +19,7 @@
           <div class="swiper comments-swiper">
             <div class="swiper-wrapper">
               <?php
-              foreach ($comments as $comment) :
+              foreach ($latestComments as $comment) :
               ?>
               <!-- Comment item -->
               <div class="swiper-slide">
