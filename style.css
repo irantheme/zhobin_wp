@@ -1230,9 +1230,14 @@ body {
   padding: 1rem;
 } */
 
-#single .single-post .single-gallery .single-gallery-img img {
+#single .single-post .single-gallery .single-gallery-img img,
+#single .single-post .single-gallery .single-gallery-list img {
   width: 100%;
   height: auto;
+}
+
+#single .single-post .single-gallery.active .single-gallery-img img,
+#single .single-post .single-gallery.active .single-gallery-list img {
   cursor: pointer;
 }
 
@@ -1268,12 +1273,6 @@ body {
   padding-left: 10px;
 }
 
-#single .single-post .single-gallery .single-gallery-list img {
-  width: 100%;
-  height: inherit;
-  cursor: pointer;
-}
-
 /* Single content */
 
 /* #single .single-post .single-content {
@@ -1286,6 +1285,7 @@ body {
   font-size: 1.2rem;
   position: relative;
   margin: 0 0 1rem;
+  line-height: 1.8rem;
 }
 
 #single .single-post .single-content .single-heading h1::after {
@@ -1307,6 +1307,34 @@ body {
 
 #single .single-post .single-content .single-text img {
   margin: 0.5rem 0;
+  width: 100%;
+}
+
+/* Single text */
+
+#single .single-post .single-content .single-text {
+  margin-bottom: 2rem;
+}
+
+#single .single-post .single-content .single-text p {
+  margin-bottom: 1rem;
+}
+
+#single .single-post .single-content .single-text ul {
+  list-style: inside disc;
+}
+
+#single .single-post .single-content .single-text ol {
+  list-style: inside decimal;
+}
+
+#single .single-post .single-content .single-text blockquote {
+  padding: 2rem;
+  border-right: 0.5rem dashed var(--bs-gray-600);
+  background: var(--bs-gray-200);
+  text-align: justify;
+  margin: 2rem 0;
+  color: var(--bs-dark);
 }
 
 #single .single-post .single-content .single-info ul {
@@ -1348,7 +1376,7 @@ body {
 
 /* Single labels */
 
-#single .single-post .single-content .single-info .single-labels span {
+#single .single-post .single-content .single-info span {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1479,7 +1507,7 @@ body {
 
 .single-gallery-overlay img {
   width: 100%;
-  object-fit: 100%;
+  object-fit: cover;
   max-height: 80vh;
 }
 
@@ -1491,8 +1519,8 @@ body {
 .single-gallery-overlay #close-gallery-overlay {
   position: absolute;
   padding: 1rem;
-  top: 0;
-  right: 0;
+  top: 2rem;
+  right: 1rem;
   font-size: 3rem;
   z-index: 7;
   color: var(--bs-gray-200);
@@ -1536,4 +1564,10 @@ body {
   .grid-item {
     width: 33.33333333%;
   }
+}
+
+/* Gallery situation */
+
+.gallery {
+  display: none;
 }

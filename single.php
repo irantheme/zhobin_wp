@@ -1,5 +1,23 @@
   <?php get_header(); ?>
 
+  <?php while ( have_posts() ) : the_post(); ?>
+
+  <?php
+  // Get all category of posts
+  $categories = get_the_category();
+  // Get post format
+  $post_format = get_post_format();
+
+  // Get gallery post, (true, false) -> related to html output or data
+  $gallery_post = get_post_gallery( get_the_ID(), false);
+
+  // Init url video
+  $video_url =  wp_get_attachment_url( get_the_ID() );
+  $videoElement = wp_video_shortcode( array( 'src' => $video_url ) );
+
+  if ( $post_format == 'gallery' && $gallery_post ) : 
+  ?>
+
   <!-- Single gallery overlay -->
   <div class="single-gallery-overlay">
     <div class="container">
@@ -8,10 +26,13 @@
           <!-- Swiper -->
           <div class="swiper swiper-gallery-overlay">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/1.jpg" alt="Gallery image"></div>
-              <div class="swiper-slide"><img src="images/4.jpg" alt="Gallery image"></div>
-              <div class="swiper-slide"><img src="images/2.jpg" alt="Gallery image"></div>
-              <div class="swiper-slide"><img src="images/3.jpg" alt="Gallery image"></div>
+              <?php if ( has_post_thumbnail() ) : ?>
+              <div class="swiper-slide"><img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image gallery"></div>
+              <?php endif;
+              foreach ( $gallery_post['src'] as $gallery_src ) : ?>
+              ?>
+              <div class="swiper-slide"><img src="<?php echo $gallery_src; ?>" alt="Image gallery"></div>
+              <?php endforeach; ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -24,6 +45,8 @@
     <span id="close-gallery-overlay"><i class="lni lni-close"></i></span>
   </div>
 
+  <?php endif; ?>
+
   <!-- Content #####################3 -->
   <section id="content">
     <!-- Single ############################### -->
@@ -34,17 +57,27 @@
           <div class="row">
             <div class="col-lg-6">
               <!-- Single gallery -->
-              <div class="single-gallery">
+              <div class="single-gallery <?php if ( $post_format == 'gallery' && $gallery_post ) { echo 'active'; } ?>">
+                <?php if ( has_post_thumbnail() ) : ?>
                 <!-- Single gallery main img -->
                 <div class="single-gallery-img">
-                  <img src="images/1.jpg" alt="Image gallery">
+                  <img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image gallery">
                 </div>
+                <?php endif;
+                if ( $post_format == 'gallery' && $gallery_post ) : 
+                ?>
                 <!-- Single gallery list img -->
                 <ul class="single-gallery-list">
-                  <li><img src="images/4.jpg" data-gallery="1" alt="Image gallery"></li>
-                  <li><img src="images/2.jpg" data-gallery="2" alt="Image gallery"></li>
-                  <li><img src="images/3.jpg" data-gallery="3" alt="Image gallery"></li>
+                  <?php
+                  $counterDataGallery = 1;
+                  foreach ( $gallery_post['src'] as $gallery_src ) : ?>
+                  <li><img src="<?php echo $gallery_src; ?>" data-gallery="<?php echo $counterDataGallery; ?>" alt="Image gallery"></li>
+                  <?php
+                  $counterDataGallery++;
+                  endforeach;
+                  ?>
                 </ul>
+                <?php endif; ?>
               </div>
             </div>
             <div class="col-lg-6">
@@ -52,35 +85,29 @@
               <div class="single-content">
                 <!-- Single heading -->
                 <div class="single-heading">
-                  <h1>طراحی و توسعه قالب وردپرس</h1>
+                  <h1><?php the_title(); ?></h1>
                 </div>
                 <!-- Single text -->
-                <div class="single-text">
-                  <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                    استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای
-                    در بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-                  <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                    استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای
-                    در بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-                  <img src="images/4.jpg" alt="Image">
-                  <p>معمولا طراحان و توسعه دهندگان برای پر کردن محتوای طراحی شده از نوعی نوشته بی هدف برای بررسی کار
-                    استفاده می کنند. این نوع نوشته ها هیچ گونه هدفی را دنبال نمی کنند و سیاست استفاده از آن ها فلسفه ای
-                    در بر ندارد. برای توسعه هر نوع دانشی پارسی را پاس بداریم.</p>
-                </div>
+                <div class="single-text"><?php the_content(); ?></div>
                 <!-- Single info -->
                 <div class="single-info">
                   <ul>
+                    <?php if ( has_category() ) : ?>
                     <!-- Category & date -->
                     <li>
                       <b>دسته بندی</b>
                       <span>
-                        <a href="#">برنامه نویسی</a>
-                        <a href="#">هک و امنیت</a>
+                        <?php
+                        foreach ( $categories as $category ) {
+                          echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ) . '">' . esc_html( $category->name ) . '</a>';
+                        }
+                        ?>
                       </span>
                     </li>
+                    <?php endif; ?>
                     <li>
                       <b>تاریخ انتشار</b>
-                      <span>28 خرداد 1400</span>
+                      <span><?php echo get_the_date('j, F Y'); ?></span>
                     </li>
                   </ul>
                   <!-- Author & Share -->
@@ -88,29 +115,31 @@
                     <li>
                       <b>نویسنده</b>
                       <span>
-                        <a href="#">امیرحسین</a>
+                        <?php echo get_the_author_posts_link(); ?>
                       </span>
                     </li>
                     <li>
                       <b>اشتراک گذاری</b>
                       <span class="single-share">
-                        <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                        <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                        <a href="#"><i class="lni lni-linkedin-original"></i></a>
+                        <a href="https://www.facebook.com/sharer?u=<?php the_permalink();?>;?t=<?php the_title(); ?>;" data-toggle="tooltip" data-placement="top" title="اشتراک گذاری در فیس بوک" target="_blank"><i class="lni lni-facebook-filled"></i></a>
+                        <a href="http://twitter.com/share?url=<?php the_title(); ?><?php the_permalink();?>" data-toggle="tooltip" data-placement="top" title="اشتراک گذاری در توئیتر" target="_blank"><i class="lni lni-twitter-filled"></i></a>
+                        <a href="http://www.linkedin.com/shareArticle?mini=true?url=<?php the_permalink() ?>?title=<?php the_title(); ?>?summary=?source=<?php bloginfo('name'); ?>" data-toggle="tooltip" data-placement="top" title="اشتراک گذاری در لینکدین" target="_blank"><i class="lni lni-linkedin"></i></a>
+                        <a href="whatsapp://send?text=<?php the_title(); ?><?php the_permalink();?>" data-toggle="tooltip" data-placement="top" title="اشتراک گذاری در واتس آپ" target="_blank"><i class="lni lni-whatsapp"></i></a>
+                        <a href="https://t.me/share/url?url=<?php the_title(); ?><?php the_permalink(); ?>" data-toggle="tooltip" data-placement="top" title="اشتراک گذاری در تلگرام" target="_blank"><i class="lni lni-telegram"></i></a>
                       </span>
                     </li>
                   </ul>
+                  <?php if ( has_tag() ) : ?>
                   <!-- Labels -->
                   <ul class="single-labels">
                     <li>
                       <b>برچسب ها</b>
                       <span>
-                        <a href="#">قالب وردپرس پرس</a><a href="#">قالب وبلاگ</a><a href="#">طراحی وب</a><a
-                          href="#">قالب
-                          شخصی</a><a href="#">توسعه کار</a><a href="#">برنامه نویسی وب</a>
+                        <?php the_tags( '', '', '' ); ?>
                       </span>
                     </li>
                   </ul>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -201,5 +230,7 @@
       </div>
     </div>
   </section>
+
+  <?php endwhile; ?>
 
   <?php get_footer(); ?>

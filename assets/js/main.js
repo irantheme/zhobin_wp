@@ -327,10 +327,11 @@
   // Single gallery clickable init
   function gallerySingleClickable() {
     // Open single gallery overlay
-    $('.single-gallery img').click(function () {
+    $('.single-gallery.active img').click(function () {
       var data = parseInt($(this).data('gallery'));
       $('.single-gallery-overlay').fadeIn();
-      gallerySingleOverlay(data);
+      if (data) gallerySingleOverlay(data);
+      else gallerySingleOverlay();
     });
     // Close single gallery overlay with overlay clickable
     $('.single-gallery-overlay').click(function (e) {
