@@ -29,12 +29,12 @@ if ( post_password_required() )
         <ul class="comments-list">
           <?php
           wp_list_comments( array(
-              'avatar_size' => 100,
-              'style'      => 'ul',
-              'short_ping' => true,
-              'callback' => 'better_comments',
-              'reverse_top_level' => true,
-              // 'per_page' => 2
+            'avatar_size' => 100,
+            'style'      => 'ul',
+            'short_ping' => true,
+            'callback' => 'better_comments',
+            'reverse_top_level' => true,
+            // 'per_page' => 2
           ) );
           ?>
         </ul><!-- .comment-list -->

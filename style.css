@@ -75,6 +75,12 @@ html {
   box-sizing: border-box;
 }
 
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: var(--bs-gray-dark);
   transition: all 0.3s ease-in-out;
@@ -469,7 +475,7 @@ body {
 #search-overlay .search-box .search-input {
   border: 0;
   background: var(--bs-gray-100);
-  height: 4rem;
+  height: 5rem;
   font-size: 1.2rem;
   color: var(--bs-gray-700);
   padding: 0.5rem 1rem;
@@ -670,6 +676,10 @@ body {
 }
 
 /* Posts ######################## */
+
+/* #content #posts {
+  margin-bottom: 4rem;
+} */
 
 #content #posts .container {
   padding: 0;
@@ -1412,10 +1422,13 @@ body {
   background: var(--bs-white);
 }
 
+#comments .comments-holder ul {
+  padding: 1rem;
+}
+
 /* Comments list */
 
 #comments .comments-list {
-  padding: 1rem;
   border: 1px solid var(--bs-gray-200);
 }
 
@@ -1563,21 +1576,7 @@ body {
   }
 }
 
-/* Gallery situation */
-
-.gallery {
-  display: none;
-}
-
-/* Respond comments */
-
-#respond {
-  background: var(--bs-white);
-  padding: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Forms */
+/* Forms ---------------------------------------- */
 
 input[type='submit'],
 input[type='reset'],
@@ -1822,4 +1821,131 @@ input[type='text']::-webkit-search-cancel-button {
 :-ms-input-placeholder {
   opacity: 1;
   color: var(--bs-dark);
+}
+
+/* 404 ############################## */
+
+.body-404 {
+  background: var(--bs-white);
+}
+
+#page-404 {
+}
+
+#page-404 #wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: normal;
+}
+
+#page-404 #wrapper strong {
+  font-size: 12rem;
+}
+
+#page-404 #wrapper b {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+#page-404 #wrapper .button-back {
+  padding: 1rem;
+  border: 3px solid var(--bs-dark);
+  color: var(--bs-dark);
+  border-radius: 2rem;
+  transition: 0.3s;
+  font-size: 0.9rem;
+  position: relative;
+  width: 13rem;
+  font-weight: bold;
+}
+
+#page-404 #wrapper .button-back i {
+  position: absolute;
+  top: calc(50% + 1px);
+  left: 2rem;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#page-404 #wrapper .button-back:hover {
+  width: 15rem;
+  background: var(--bs-dark);
+  color: var(--bs-white);
+}
+
+#page-404 #wrapper .button-back:hover i {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (max-width: 992px) {
+  #page-404 #wrapper strong {
+    font-size: 8rem;
+  }
+  #page-404 #wrapper b {
+    font-size: 1.4rem;
+  }
+}
+
+/* Gallery situation */
+
+.gallery {
+  display: none;
+}
+
+/* Respond comments */
+
+#respond {
+  background: var(--bs-white);
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Comments form title */
+
+.comment-reply-title {
+  font-size: 1.2rem;
+}
+
+.comment-notes {
+  font-size: 0.9rem;
+}
+
+/* Pagination */
+
+.pagination {
+  padding-top: 4rem;
+}
+
+.pagination .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination .container a,
+.pagination .container span {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background: var(--bs-gray-400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pagination .container span {
+  background: var(--bs-teal);
+  color: var(--bs-white);
+}
+
+.pagination .container a:hover {
+  background: var(--bs-gray-500);
 }

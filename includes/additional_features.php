@@ -113,35 +113,51 @@ function author_role_text( $authorID ) {
   return $user_role;
 }
 
-
+/**
+ * Better comments (Related to comments list)
+ * @param comment, args, depth
+ */
 if( ! function_exists( 'better_comments' ) ):
-function better_comments($comment, $args, $depth) { ?>
-  <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
-    <div class="comment">
-      <div class="comment-avatar">
-        <?php echo get_avatar($comment); ?>
-      </div>
-      <div class="comment-content">
-        <?php if ($comment->comment_approved == '0') : ?>
-          <em><?php esc_html_e('نظر شما در صف بررسی است.','5balloons_theme') ?></em>
-          <br />
-        <?php endif; ?>
-        <div class="comment-heading">
-          <b><?php echo get_comment_author() ?></b>
-          <span class="date"><?php printf(/* translators: 1: date and time(s). */ esc_html__('%1$s at %2$s' , '5balloons_theme'), get_comment_date(),  get_comment_time()) ?></span>
+  function better_comments($comment, $args, $depth) { ?>
+    <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+      <div class="comment">
+        <div class="comment-avatar">
+          <?php echo get_avatar($comment); ?>
         </div>
-        <div class="comment-body">
-          <p>
-            <?php comment_text() ?>
-          </p>
+        <div class="comment-content">
+          <?php if ($comment->comment_approved == '0') : ?>
+            <em><?php esc_html_e('نظر شما در صف بررسی است.','5balloons_theme') ?></em>
+            <br />
+          <?php endif; ?>
+          <div class="comment-heading">
+            <b><?php echo get_comment_author() ?></b>
+            <span class="date"><?php printf(/* translators: 1: date and time(s). */ esc_html__('%1$s at %2$s' , '5balloons_theme'), get_comment_date(),  get_comment_time()) ?></span>
+          </div>
+          <div class="comment-body">
+            <p>
+              <?php comment_text() ?>
+            </p>
+          </div>
+          <div class="comment-options">
+            <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            <?php edit_comment_link( __( 'ویرایش', 'textdomain' ), '  ', '' ); ?>
+          </div>            
         </div>
-        <div class="comment-options">
-          <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-          <?php edit_comment_link( __( 'ویرایش', 'textdomain' ), '  ', '' ); ?>
-        </div>            
       </div>
-    </div>
-  </li>
-<?php
-        }
+    </li>
+  <?php
+  }
 endif;
+
+
+/**
+ * Change default gravatar
+ * @param avatar_default
+ * @return avatar_default (string)
+ */
+function new_default_user_avatar ($avatar_defaults) {
+  $myavatar = get_template_directory_uri() . '/images/user.png';
+  $avatar_defaults[$myavatar] = "Default Gravatar";
+  return $avatar_defaults;
+}
+add_filter( 'avatar_defaults', 'new_default_user_avatar' );
