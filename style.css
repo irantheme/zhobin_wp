@@ -1424,13 +1424,10 @@ body {
 
 #comments .comments-holder ul {
   padding: 1rem;
+  border: 1px solid var(--bs-gray-200);
 }
 
 /* Comments list */
-
-#comments .comments-list {
-  border: 1px solid var(--bs-gray-200);
-}
 
 #comments .comments-list .comment {
   padding: 1rem;
@@ -1949,3 +1946,11 @@ input[type='text']::-webkit-search-cancel-button {
 .pagination .container a:hover {
   background: var(--bs-gray-500);
 }
+
+/* Children comments */
+
+/* .children {
+  border-width: 1px 1px 1px;
+  border-style: solid;
+  border-color: var(--bs-gray-200);
+} */

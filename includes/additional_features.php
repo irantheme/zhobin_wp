@@ -65,8 +65,8 @@ add_filter( 'shortcode_atts_gallery', 'modify_gallery_image_size', 10, 3 );
 
 
 /**
- * @return role string
- * @param author_ID author
+ * @return string user role (persian)
+ * @param int author id
  */
 function author_role_text( $authorID ) {
   // Data of user role
@@ -115,7 +115,8 @@ function author_role_text( $authorID ) {
 
 /**
  * Better comments (Related to comments list)
- * @param comment, args, depth
+ * @return void
+ * @param string, args, depth
  */
 if( ! function_exists( 'better_comments' ) ):
   function better_comments($comment, $args, $depth) { ?>
@@ -152,12 +153,69 @@ endif;
 
 /**
  * Change default gravatar
- * @param avatar_default
- * @return avatar_default (string)
+ * @param array
+ * @return string (url user.png)
  */
-function new_default_user_avatar ($avatar_defaults) {
-  $myavatar = get_template_directory_uri() . '/images/user.png';
-  $avatar_defaults[$myavatar] = "Default Gravatar";
+function new_default_user_avatar ( $avatar_defaults ) {
+  $customAvatar = get_template_directory_uri() . '/images/user.png';
+  $avatar_defaults[$customAvatar] = "Default Gravatar";
   return $avatar_defaults;
 }
 add_filter( 'avatar_defaults', 'new_default_user_avatar' );
+
+
+/**
+ * Redirect subscriber user to home after login
+ * @return void
+ */
+function redirectSubsToFronted() {
+  $currentUser = wp_get_current_user();
+  if ( count($currentUser->roles) == 1 and $currentUser->roles[0] == 'subscriber' ) {
+    wp_redirect(site_url('/'));
+    exit;
+  }
+}
+add_action('admin_init', 'redirectSubsToFronted');
+
+
+/**
+ * Hide admin bar in subscriber user
+ * @return void
+ */
+function noSubsAdminBar() {
+  $currentUser = wp_get_current_user();
+  if (count($currentUser->roles) == 1 and $currentUser->roles[0] == 'subscriber') {
+    show_admin_bar(false);
+  }
+}
+add_action('wp_loaded', 'noSubsAdminBar');
+
+
+/**
+ * Customize login screen
+ * @return string (url)
+ */
+function ourHeaderUrl() {
+  return esc_url(site_url('/'));
+}
+add_filter('login_headerurl', 'ourHeaderUrl');
+
+
+/**
+ * Manually css to login screen
+ * @return void
+ */
+function ourLoginCSS() {
+  wp_enqueue_style('university_main_styles', get_stylesheet_uri());
+}
+add_action('login_enqueue_scripts', 'ourLoginCSS');
+
+
+/**
+ * Manually title login screen
+ * @return string (website title)
+ */
+function ourLoginTitle() {
+  return get_bloginfo('name');
+}
+add_filter('login_headertext', 'ourLoginTitle');

@@ -15,8 +15,6 @@ function add_theme_sources()
     wp_enqueue_script('swiper-js', get_template_directory_uri() . '/assets/js/swiper-bundle.min.js', array(), '6.4.11', true);
     // Adding aos js
     wp_enqueue_script('aos-js', get_template_directory_uri() . '/assets/js/aos.js', array(), '6.4.11', true);
-    // Adding flexmasonry js
-    // wp_enqueue_script('flexmasonry-js', get_template_directory_uri() . '/assets/js/flexmasonry.js', array(), '6.4.11', true);
     // Adding masonry js
     wp_enqueue_script('masonry-js', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array(), '1.0', true);
     // Adding images loaded js
