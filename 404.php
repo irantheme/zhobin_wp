@@ -13,7 +13,7 @@
     <div id="wrapper">
       <strong>404</strong>
       <b>صفحه مورد نظر پیدا نشد</b>
-      <a href="<?php echo site_url(); ?>" class="button-back">بازگشت به سایت<i class="lni lni-arrow-left"></i></a>
+      <a href="<?php echo esc_url( site_url( '/' ) ); ?>" class="button-back">بازگشت به سایت<i class="lni lni-arrow-left"></i></a>
     </div>
   </section>
 </body>

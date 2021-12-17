@@ -4,7 +4,7 @@
 <section id="content">
   <div class="container">
 
-    <?php get_template_part('template-parts/content', 'categories'); ?>
+    <?php get_template_part( 'template-parts/content', 'categories' ); ?>
 
   </div>
 
@@ -16,7 +16,7 @@
         <div class="grid-sizer"></div>
         <?php while ( have_posts()) : the_post(); ?>
         
-        <?php get_template_part('template-parts/content', 'post'); ?>
+        <?php get_template_part( 'template-parts/content', 'post' ); ?>
 
         <?php endwhile; ?>
       </div>

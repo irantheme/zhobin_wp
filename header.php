@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 
 <head>
-  <meta charset="<?php bloginfo('charset'); ?>" />
+  <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <?php wp_head(); ?>
@@ -10,10 +10,10 @@
 
 <body id="top" <?php body_class(); ?>>
 
-  <?php $header_img_url = wp_get_attachment_image_src(get_option('zhobin_header_bg'), 'full'); ?>
+  <?php $header_img_url = wp_get_attachment_image_src( get_option( 'zhobin_header_bg' ), 'full' ); ?>
 
   <!-- Header ############################### -->
-  <header id="header" style="background-image: url('<?php echo $header_img_url[0]; ?>');">
+  <header id="header" style="background-image: url('<?php echo esc_url( $header_img_url[0] ); ?>');">
     <div class="container-fluid">
       <!-- Hero -->
       <div class="hero">
@@ -21,7 +21,7 @@
         <div class="main-menu">
           <!-- Logo -->
           <div class="logo">
-            <strong><a href="<?php echo site_url(); ?>"><?php bloginfo('title'); ?></a></strong>
+            <strong><a href="<?php echo esc_url( site_url() ); ?>"><?php bloginfo( 'title' ); ?></a></strong>
           </div>
           <!-- Options -->
           <div class="options">
@@ -43,7 +43,7 @@
           <!-- Heading -->
           <div class="heading">
             <h1><?php bloginfo('description'); ?></h1>
-            <p><?php echo get_option('zhobin_header_extra_description'); ?></p>
+            <p><?php echo esc_html( get_option('zhobin_header_extra_description') ); ?></p>
           </div>
           <?php endif; ?>
           <!-- Social networks -->
@@ -54,7 +54,7 @@
             $socialMenuID = $socialMenu['socialMediaLocation'];
             $socialMediaItems = wp_get_nav_menu_items($socialMenuID);
             foreach($socialMediaItems as $social){
-              echo '<a href="' . $social->url . '"><i class="lni lni-' . $social->title . '"></i></a>';
+              echo '<a href="' . esc_url( $social->url ) . '"><i class="lni lni-' . esc_attr( $social->title ) . '"></i></a>';
             }
             ?>
           </div>
@@ -77,9 +77,9 @@
       <cite>
         <?php
         if ( get_option('zhobin_banner') ) :
-          echo get_option('zhobin_banner');
+          echo esc_html( get_option( 'zhobin_banner' ) );
         else:
-          bloginfo('name');
+          bloginfo( 'name' );
         endif;
         ?>
       </cite>
@@ -88,10 +88,10 @@
     <!-- Nav menu -->
     <div class="nav-menu">
       <?php
-        wp_nav_menu(array(
+        wp_nav_menu( array( 
             'theme_location' => 'headerNavLocation',
             'depth' => 1
-        ));
+        ) );
       ?>
     </div>
   </nav>

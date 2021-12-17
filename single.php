@@ -31,7 +31,7 @@
               <?php endif;
               foreach ( $gallery_post['src'] as $gallery_src ) : ?>
               ?>
-              <div class="swiper-slide"><img src="<?php echo $gallery_src; ?>" alt="Image gallery"></div>
+              <div class="swiper-slide"><img src="<?php echo esc_url( $gallery_src ); ?>" alt="Image gallery"></div>
               <?php endforeach; ?>
             </div>
             <div class="swiper-button-next"></div>
@@ -71,7 +71,7 @@
                   <?php
                   $counterDataGallery = 1;
                   foreach ( $gallery_post['src'] as $gallery_src ) : ?>
-                  <li><img src="<?php echo $gallery_src; ?>" data-gallery="<?php echo $counterDataGallery; ?>" alt="Image gallery"></li>
+                  <li><img src="<?php echo esc_url ($gallery_src ); ?>" data-gallery="<?php echo esc_attr( $counterDataGallery ); ?>" alt="Image gallery"></li>
                   <?php
                   $counterDataGallery++;
                   endforeach;

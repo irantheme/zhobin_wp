@@ -6,8 +6,8 @@
         echo get_the_archive_title();
       } else if ( is_search() ) { 
         echo 'نتایج یافت شده';
-      } else if ( get_option('zhobin_content_heading') ) {
-        echo get_option('zhobin_content_heading');
+      } else if ( get_option( 'zhobin_content_heading' ) ) {
+        echo esc_html( get_option( 'zhobin_content_heading' ) );
       }
     ?>
   </h2>
@@ -16,9 +16,9 @@
       if ( is_archive() ) {
         echo get_the_archive_description();
       } else if ( is_search() ) { 
-        echo 'کلمه جستجو شده :‌ ' . esc_html(get_search_query(false)) . '&rdquo;';
+        echo 'کلمه جستجو شده :‌ ' . esc_html( get_search_query(false) ) . '&rdquo;';
       } else if ( get_option('zhobin_content_description') ) {
-        echo get_option('zhobin_content_description');
+        echo esc_html( get_option('zhobin_content_description') );
       }
     ?>
   </p>
@@ -34,12 +34,12 @@ if ( count($categories) ) : ?>
       <a id="all-categories" class="active">همه</a>
     </li>
     <?php
-    $categories = get_categories(array(
+    $categories = get_categories( array( 
       'orderby' => 'name',
       'parent' => 0
-    ));
-    foreach ($categories as $category) {
-      echo '<li><a data-cate="' . $category->term_id . '">' . $category->name . '</a></li>';
+    ) );
+    foreach ( $categories as $category ) {
+      echo '<li><a data-cate="' . esc_attr( $category->term_id ) . '">' . esc_html( $category->name ) . '</a></li>';
     }
     ?>
   </ul>

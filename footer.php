@@ -8,7 +8,7 @@
   ?>
   <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_footer_latest_comments_bg'), 'full'); ?>
   <!-- Latest comments ################################### -->
-  <section id="latest-comments" style="background-image: url('<?php echo $latest_comments_bg[0]; ?>');">
+  <section id="latest-comments" style="background-image: url('<?php echo esc_url( $latest_comments_bg[0] ); ?>');">
     <div class="container">
       <!-- Comments list -->
       <div class="latest-comments-list">
@@ -51,7 +51,7 @@
           <div class="heading-footer">
             <b><?php bloginfo('name'); ?></b>
             <?php if ( get_option('zhobin_banner') ) : ?>
-            <em><?php echo get_option('zhobin_banner'); ?></em>
+            <em><?php echo esc_html( get_option('zhobin_banner') ); ?></em>
             <?php endif; ?>
           </div>
         </div>
@@ -61,7 +61,7 @@
           <?php if ( get_option( 'zhobin_footer_copyright_text' ) ) : ?>
           <!-- Copy right -->
           <div class="copyright">
-            <?php echo get_option( 'zhobin_footer_copyright_text' ); ?>
+            <?php echo esc_html( get_option( 'zhobin_footer_copyright_text' ) ); ?>
           </div>
           <?php endif; ?>
         </div>
@@ -74,7 +74,7 @@
             $socialMenuID = $socialMenu['socialMediaLocation'];
             $socialMediaItems = wp_get_nav_menu_items($socialMenuID);
             foreach($socialMediaItems as $social){
-              echo '<a href="' . $social->url . '"><i class="lni lni-' . $social->title . '"></i></a>';
+              echo '<a href="' . esc_url( $social->url ) . '"><i class="lni lni-' . esc_attr( $social->title ) . '"></i></a>';
             }
             ?>
           </div>

@@ -110,7 +110,7 @@ function author_role_text( $authorID ) {
       $user_role = 'کاربر';
       break;
   }
-  return $user_role;
+  return __( $user_role );
 }
 
 /**
@@ -123,10 +123,10 @@ if( ! function_exists( 'better_comments' ) ):
     <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
       <div class="comment">
         <div class="comment-avatar">
-          <?php echo get_avatar($comment); ?>
+          <?php echo get_avatar( $comment ); ?>
         </div>
         <div class="comment-content">
-          <?php if ($comment->comment_approved == '0') : ?>
+          <?php if ( $comment->comment_approved == '0' ) : ?>
             <em><?php esc_html_e('نظر شما در صف بررسی است.','5balloons_theme') ?></em>
             <br />
           <?php endif; ?>

@@ -11,5 +11,5 @@
   // Adding register loading posts route
   require get_theme_file_path('/includes/loading_post_route.php');
 
-  $settings = new WordPress_Custom_Admin_Settings( 'تنظیمات ژوبین', 'zhobin_settings', __FILE__, 'zhobin' );
+  $settings = new WordPress_Custom_Admin_Settings( 'تنظیمات ژوبین', 'zhobin', __FILE__, 'zhobin' );
 
