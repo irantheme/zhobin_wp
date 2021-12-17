@@ -58,7 +58,7 @@ foreach( $category as $cate ) {
         <div class="swiper gallery-swiper">
           <div class="swiper-wrapper">
             <?php if ( has_post_thumbnail() ) : ?>
-            <div class="swiper-slide"><img src="<?php the_post_thumbnail_url('large'); ?>" alt="تصویر اصلی"></div>
+            <div class="swiper-slide"><img src="<?php the_post_thumbnail_url( 'large' ); ?>" alt="تصویر اصلی"></div>
             <?php endif; ?>
             <?php foreach ( $gallery_post['src'] as $gallery_src ) : ?>
               <div class="swiper-slide"><img src="<?php echo esc_url( $gallery_src ); ?>" alt="گالری"></div>
@@ -78,7 +78,7 @@ foreach( $category as $cate ) {
             foreach( $categories as $category ) {
               $categories_output .= '<span>' . __( $category->name ) . '</span>';
             }
-            echo trim( __( $categories_output ), '' );
+            echo trim( $categories_output, '' );
             ?>
           </div>
           <?php endif; ?>
@@ -90,7 +90,7 @@ foreach( $category as $cate ) {
     <!-- Post image -->
     <div class="post-image">
       <a href="<?php echo get_the_permalink(); ?>" class="post-image-link">
-        <img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image post">
+        <img src="<?php the_post_thumbnail_url( 'large' ); ?>" alt="Image post">
         <?php if ( ! empty( $categories ) ) : ?>
         <!-- Post category -->
         <div class="post-category">
@@ -99,7 +99,7 @@ foreach( $category as $cate ) {
           foreach( $categories as $category ) {
             $categories_output .= '<span>' . __( $category->name ) . '</span>';
           }
-          echo trim( __( $categories_output ), '' );
+          echo trim( $categories_output, '' );
           ?>
         </div>
         <?php endif; ?>
@@ -114,7 +114,7 @@ foreach( $category as $cate ) {
         foreach( $categories as $category ) {
           $categories_output .= '<a href=" ' . esc_attr( $category->link ) . '">' . __( $category->name ) . '</a>';
         }
-        echo trim( esc_html( $categories_output ), '' );
+        echo trim( $categories_output, '' );
       ?>
     </div>
     <?php endif;
@@ -124,7 +124,7 @@ foreach( $category as $cate ) {
     <div class="post-content">
       <!-- Post date -->
       <div class="post-date">
-        <span><?php echo get_the_date('j, F Y'); ?></span>
+        <span><?php echo get_the_date( 'j, F Y' ); ?></span>
       </div>
       <!-- Post heading -->
       <div class="post-heading">
@@ -132,7 +132,7 @@ foreach( $category as $cate ) {
       </div>
       <!-- Post text -->
       <div class="post-text">
-        <p><?php echo wp_trim_words( strip_shortcodes( get_the_excerpt() ), 43); ?></p>
+        <p><?php echo wp_trim_words( strip_shortcodes( get_the_excerpt() ), 43 ); ?></p>
       </div>
     </div>
 
@@ -140,10 +140,10 @@ foreach( $category as $cate ) {
     <div class="post-info">
       <!-- Post author -->
       <div class="post-author">
-        <img src="<?php echo get_avatar_url( get_the_author_meta('ID') ); ?>" alt="Author">
+        <img src="<?php echo get_avatar_url( get_the_author_meta( 'ID' ) ); ?>" alt="Author">
         <div>
           <cite><?php echo get_the_author_posts_link(); ?></cite>
-          <span><?php echo author_role_text( get_the_author_meta('ID') ); ?></span>
+          <span><?php echo author_role_text( get_the_author_meta( 'ID' ) ); ?></span>
         </div>
       </div>
     </div>

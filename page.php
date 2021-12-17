@@ -16,7 +16,7 @@
                 <?php if ( has_post_thumbnail() ) : ?>
                 <!-- Single gallery main img -->
                 <div class="single-gallery-img">
-                  <img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image gallery">
+                  <img src="<?php the_post_thumbnail_url( 'large' ); ?>" alt="Image gallery">
                 </div>
                 <?php endif; ?>
               </div>

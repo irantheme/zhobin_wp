@@ -6,7 +6,7 @@
 
   if ( $latestComments ) :
   ?>
-  <?php $latest_comments_bg = wp_get_attachment_image_src(get_option('zhobin_footer_latest_comments_bg'), 'full'); ?>
+  <?php $latest_comments_bg = wp_get_attachment_image_src( get_option('zhobin_footer_latest_comments_bg' ), 'full'); ?>
   <!-- Latest comments ################################### -->
   <section id="latest-comments" style="background-image: url('<?php echo esc_url( $latest_comments_bg[0] ); ?>');">
     <div class="container">
@@ -49,9 +49,9 @@
         <div class="col-lg-6 offset-lg-6">
           <!-- Heading footer -->
           <div class="heading-footer">
-            <b><?php bloginfo('name'); ?></b>
-            <?php if ( get_option('zhobin_banner') ) : ?>
-            <em><?php echo esc_html( get_option('zhobin_banner') ); ?></em>
+            <b><?php bloginfo( 'name' ); ?></b>
+            <?php if ( get_option( 'zhobin_banner' ) ) : ?>
+            <em><?php echo __( get_option( 'zhobin_banner' ) ); ?></em>
             <?php endif; ?>
           </div>
         </div>
@@ -61,7 +61,7 @@
           <?php if ( get_option( 'zhobin_footer_copyright_text' ) ) : ?>
           <!-- Copy right -->
           <div class="copyright">
-            <?php echo esc_html( get_option( 'zhobin_footer_copyright_text' ) ); ?>
+            <?php echo __( get_option( 'zhobin_footer_copyright_text' ) ); ?>
           </div>
           <?php endif; ?>
         </div>

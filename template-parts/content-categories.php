@@ -7,7 +7,7 @@
       } else if ( is_search() ) { 
         echo 'نتایج یافت شده';
       } else if ( get_option( 'zhobin_content_heading' ) ) {
-        echo esc_html( get_option( 'zhobin_content_heading' ) );
+        echo __( get_option( 'zhobin_content_heading' ) );
       }
     ?>
   </h2>
@@ -18,7 +18,7 @@
       } else if ( is_search() ) { 
         echo 'کلمه جستجو شده :‌ ' . esc_html( get_search_query(false) ) . '&rdquo;';
       } else if ( get_option('zhobin_content_description') ) {
-        echo esc_html( get_option('zhobin_content_description') );
+        echo __( get_option('zhobin_content_description') );
       }
     ?>
   </p>
@@ -39,7 +39,7 @@ if ( count($categories) ) : ?>
       'parent' => 0
     ) );
     foreach ( $categories as $category ) {
-      echo '<li><a data-cate="' . esc_attr( $category->term_id ) . '">' . esc_html( $category->name ) . '</a></li>';
+      echo '<li><a data-cate="' . esc_attr( $category->term_id ) . '">' . __( $category->name ) . '</a></li>';
     }
     ?>
   </ul>

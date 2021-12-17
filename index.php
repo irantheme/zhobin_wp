@@ -13,7 +13,7 @@
     $args = array(
         'post_type' => array( 'post' )
     );
-    $post_custom_types = new WP_Query( $args);
+    $post_custom_types = new WP_Query( $args );
     // Checking have post or no
     if ( $post_custom_types->have_posts() ) : ?>
 
@@ -23,7 +23,7 @@
         <!-- Masonry style post -->
         <div class="grid-masonry">
           <div class="grid-sizer"></div>
-          <?php while ( $post_custom_types->have_posts()) : $post_custom_types->the_post(); ?>
+          <?php while ( $post_custom_types->have_posts() ) : $post_custom_types->the_post(); ?>
           
           <?php get_template_part( 'template-parts/content', 'post' ); ?>
 

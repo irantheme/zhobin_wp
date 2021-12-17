@@ -127,7 +127,7 @@ if( ! function_exists( 'better_comments' ) ):
         </div>
         <div class="comment-content">
           <?php if ( $comment->comment_approved == '0' ) : ?>
-            <em><?php esc_html_e('نظر شما در صف بررسی است.','5balloons_theme') ?></em>
+            <em><?php esc_html_e( 'نظر شما در صف بررسی است.','5balloons_theme' ) ?></em>
             <br />
           <?php endif; ?>
           <div class="comment-heading">

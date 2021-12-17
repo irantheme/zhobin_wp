@@ -27,7 +27,7 @@
           <div class="swiper swiper-gallery-overlay">
             <div class="swiper-wrapper">
               <?php if ( has_post_thumbnail() ) : ?>
-              <div class="swiper-slide"><img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image gallery"></div>
+              <div class="swiper-slide"><img src="<?php the_post_thumbnail_url( 'large' ); ?>" alt="Image gallery"></div>
               <?php endif;
               foreach ( $gallery_post['src'] as $gallery_src ) : ?>
               ?>
@@ -57,11 +57,11 @@
           <div class="row">
             <div class="col-lg-6">
               <!-- Single gallery -->
-              <div class="single-gallery <?php if ( $post_format == 'gallery' && $gallery_post ) { echo 'active'; } ?>">
+              <div class="single-gallery <?php if ( $post_format == 'gallery' && $gallery_post ) { echo esc_attr( 'active' ); } ?>">
                 <?php if ( has_post_thumbnail() ) : ?>
                 <!-- Single gallery main img -->
                 <div class="single-gallery-img">
-                  <img src="<?php the_post_thumbnail_url('large'); ?>" alt="Image gallery">
+                  <img src="<?php the_post_thumbnail_url( 'large' ); ?>" alt="Image gallery">
                 </div>
                 <?php endif;
                 if ( $post_format == 'gallery' && $gallery_post ) : 
@@ -71,7 +71,7 @@
                   <?php
                   $counterDataGallery = 1;
                   foreach ( $gallery_post['src'] as $gallery_src ) : ?>
-                  <li><img src="<?php echo esc_url ($gallery_src ); ?>" data-gallery="<?php echo esc_attr( $counterDataGallery ); ?>" alt="Image gallery"></li>
+                  <li><img src="<?php echo esc_url( $gallery_src ); ?>" data-gallery="<?php echo esc_attr( $counterDataGallery ); ?>" alt="Image gallery"></li>
                   <?php
                   $counterDataGallery++;
                   endforeach;
@@ -99,7 +99,7 @@
                       <span>
                         <?php
                         foreach ( $categories as $category ) {
-                          echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ) . '">' . esc_html( $category->name ) . '</a>';
+                          echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s' ), $category->name ) ) . '">' . __( $category->name ) . '</a>';
                         }
                         ?>
                       </span>

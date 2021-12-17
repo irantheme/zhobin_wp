@@ -43,7 +43,7 @@
           <!-- Heading -->
           <div class="heading">
             <h1><?php bloginfo('description'); ?></h1>
-            <p><?php echo esc_html( get_option('zhobin_header_extra_description') ); ?></p>
+            <p><?php echo __( get_option('zhobin_header_extra_description' ) ); ?></p>
           </div>
           <?php endif; ?>
           <!-- Social networks -->
@@ -76,8 +76,8 @@
     <div class="nav-options">
       <cite>
         <?php
-        if ( get_option('zhobin_banner') ) :
-          echo esc_html( get_option( 'zhobin_banner' ) );
+        if ( get_option( 'zhobin_banner' ) ) :
+          echo __( get_option( 'zhobin_banner' ) );
         else:
           bloginfo( 'name' );
         endif;
