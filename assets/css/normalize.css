@@ -148,7 +148,6 @@ input[type='search'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
@@ -221,6 +220,7 @@ a:focus {
 img {
   border: 0; /* 1 */
   -ms-interpolation-mode: bicubic; /* 2 */
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -339,6 +339,7 @@ html input[disabled] {
 
 input[type='checkbox'],
 input[type='radio'] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
   *height: 13px; /* 3 */
@@ -353,7 +354,6 @@ input[type='radio'] {
 
 input[type='search'] {
   -webkit-appearance: textfield; /* 1 */
-  -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box; /* 2 */
   box-sizing: content-box;
 }
@@ -406,13 +406,15 @@ textarea {
 }
 
 ::-moz-selection {
-  background: #b3d4fc;
+  background: #3dc9b3;
   text-shadow: none;
+  color: #000;
 }
 
 ::selection {
-  background: #b3d4fc;
+  background: #3dc9b3;
   text-shadow: none;
+  color: #000;
 }
 
 img {
@@ -490,6 +492,7 @@ h1 {
  */
 
 hr {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
@@ -524,6 +527,7 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted; /* 2 */
 }
 
@@ -679,6 +683,7 @@ fieldset {
  */
 
 legend {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
@@ -710,6 +715,7 @@ textarea {
 
 [type='checkbox'],
 [type='radio'] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -838,7 +844,6 @@ input:focus {
 input,
 textarea {
   -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
@@ -851,7 +856,6 @@ input[type='checkbox'],
 input[type='radio'],
 select {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
