@@ -99,8 +99,9 @@ jQuery(document).ready(function ($) {
   jQuery('ul#settings-sections.subsubsub')
     .find('a')
     .each(function (i) {
+      console.log(this);
       var id_value = jQuery(this).attr('href').replace('#', '');
-      jQuery('h3:contains("' + jQuery(this).text() + '")')
+      jQuery('h2:contains("' + jQuery(this).text() + '")')
         .attr('id', id_value)
         .addClass('section-heading');
     });
@@ -114,7 +115,7 @@ jQuery(document).ready(function ($) {
     // If "All" is clicked, show all.
     if (jQuery(this).hasClass('all')) {
       jQuery(
-        '#plugin_settings h3, #plugin_settings form p, #plugin_settings table.form-table, p.submit'
+        '#plugin_settings h2, #plugin_settings form p, #plugin_settings table.form-table, p.submit'
       ).show();
 
       return false;
@@ -127,11 +128,11 @@ jQuery(document).ready(function ($) {
     toShow = toShow.replace('#', '', toShow);
 
     jQuery(
-      '#plugin_settings h3, #plugin_settings form > p:not(".submit"), #plugin_settings table'
+      '#plugin_settings form h2, #plugin_settings form > p:not(".submit"), #plugin_settings table'
     ).hide();
-    jQuery('h3#' + toShow)
+    jQuery('h2#' + toShow)
       .show()
-      .nextUntil('h3.section-heading', 'p, table, table p')
+      .nextUntil('h2.section-heading', 'p, table, table p')
       .show();
 
     return false;
