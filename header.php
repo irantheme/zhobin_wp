@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 
 <head>
-  <meta charset="<?php bloginfo( 'charset' ); ?>" />
+  <meta charset="<?php bloginfo('charset'); ?>" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <?php wp_head(); ?>
@@ -10,10 +10,10 @@
 
 <body id="top" <?php body_class(); ?>>
 
-  <?php $header_img_url = wp_get_attachment_image_src( get_option( 'zhobin_header_bg' ), 'full' ); ?>
+  <?php $header_img_url = wp_get_attachment_image_src(get_option('irantheme_header_bg'), 'full'); ?>
 
   <!-- Header ############################### -->
-  <header id="header" style="background-image: url('<?php echo esc_url( $header_img_url[0] ); ?>');">
+  <header id="header" style="background-image: url('<?php echo esc_url($header_img_url[0]); ?>');">
     <div class="container-fluid">
       <!-- Hero -->
       <div class="hero">
@@ -21,7 +21,7 @@
         <div class="main-menu">
           <!-- Logo -->
           <div class="logo">
-            <strong><a href="<?php echo esc_url( site_url() ); ?>"><?php bloginfo( 'title' ); ?></a></strong>
+            <strong><a href="<?php echo esc_url(site_url()); ?>"><?php bloginfo('title'); ?></a></strong>
           </div>
           <!-- Options -->
           <div class="options">
@@ -39,25 +39,17 @@
         </div>
         <!-- Showcase -->
         <div class="showcase">
-          <?php if ( get_bloginfo('description') || get_option('zhobin_header_extra_description') ) : ?>
-          <!-- Heading -->
-          <div class="heading">
-            <h1><?php bloginfo('description'); ?></h1>
-            <p><?php echo __( get_option('zhobin_header_extra_description' ) ); ?></p>
-          </div>
+          <?php if (get_bloginfo('description') || get_option('irantheme_header_extra_description')) : ?>
+            <!-- Heading -->
+            <div class="heading">
+              <h1><?php bloginfo('description'); ?></h1>
+              <p><?php echo __(get_option('irantheme_header_extra_description')); ?></p>
+            </div>
           <?php endif; ?>
           <!-- Social networks -->
-          <div class="social-networks">
-            <?php
-            // Custom wp nav menu items (Social media)
-            $socialMenu = get_nav_menu_locations(); // Where menu1 can be ID, slug or title
-            $socialMenuID = $socialMenu['socialMediaLocation'];
-            $socialMediaItems = wp_get_nav_menu_items($socialMenuID);
-            foreach($socialMediaItems as $social){
-              echo '<a href="' . esc_url( $social->url ) . '"><i class="lni lni-' . esc_attr( $social->title ) . '"></i></a>';
-            }
-            ?>
-          </div>
+          <ul class="social-networks">
+            <?php get_template_part('template-parts/content', 'social'); ?>
+          </ul>
           <!-- Mouse down -->
           <div class="mouse-down">
             <a href="#content" id="mouse-down-toggle"></a>
@@ -76,10 +68,10 @@
     <div class="nav-options">
       <cite>
         <?php
-        if ( get_option( 'zhobin_banner' ) ) :
-          echo __( get_option( 'zhobin_banner' ) );
-        else:
-          bloginfo( 'name' );
+        if (get_option('irantheme_banner')) :
+          echo __(get_option('irantheme_banner'));
+        else :
+          bloginfo('name');
         endif;
         ?>
       </cite>
@@ -88,10 +80,10 @@
     <!-- Nav menu -->
     <div class="nav-menu">
       <?php
-        wp_nav_menu( array( 
-            'theme_location' => 'headerNavLocation',
-            'depth' => 1
-        ) );
+      wp_nav_menu(array(
+        'theme_location' => 'headerNavLocation',
+        'depth' => 1
+      ));
       ?>
     </div>
   </nav>
@@ -106,8 +98,7 @@
           <i id="search-alt" class="lni lni-search-alt"></i>
           <i id="spinner-alt" class="animate-rotate"></i>
         </span>
-        <span class="search-case" id="nav-search-close" data-type="close" data-search="0"><i
-            class="lni lni-close"></i></span>
+        <span class="search-case" id="nav-search-close" data-type="close" data-search="0"><i class="lni lni-close"></i></span>
       </div>
       <!-- Search results -->
       <div class="search-results"></div>

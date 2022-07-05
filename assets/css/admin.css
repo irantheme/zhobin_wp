@@ -1,50 +1,63 @@
-@import 'fonts.css';
+@import url('fonts.css');
+@import url('lineicons.css');
 
 body {
-  font-family: 'yekan', sans-serif !important;
+  font-family: 'IRANSansX', iranyekan, sans-serif !important;
 }
 
-.wrapper {
+#plugin_settings {
   padding: 0 0 20px 20px;
   line-height: 2;
 }
 
-.wrapper h1,
-.wrapper h2,
-.wrapper h3,
-.wrapper h4,
-.wrapper h5,
-.wrapper h6 {
-  font-family: 'IRANSans', tahoma, arial, sans-serif !important;
+#plugin_settings *,
+#plugin_settings *::before,
+#plugin_settings *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#plugin_settings h1,
+#plugin_settings h2,
+#plugin_settings h3,
+#plugin_settings h4,
+#plugin_settings h5,
+#plugin_settings h6 {
+  font-family: 'IRANSansX', iranyekan, sans-serif !important;
   font-weight: normal;
 }
 
-.wrapper h2 {
+#plugin_settings h2 {
   background: rgb(255, 255, 255);
   border-right: 5px solid rgb(104, 104, 104);
   padding: 10px 20px;
   font-weight: 600;
 }
 
-.wrapper .warning {
+#plugin_settings h2 + p {
   background: rgb(255, 241, 216);
   border-right: 5px solid rgb(255, 218, 150);
   padding: 10px 20px;
 }
 
-.wrapper .title {
+#plugin_settings .description {
   background: rgb(205, 232, 255);
   border-right: 5px solid rgb(148, 207, 255);
   padding: 10px 20px;
   font-weight: 500;
-}
-
-.wrapper input[type='text'],
-.wrapper textarea {
+  display: block;
+  margin-top: 0.25rem;
   width: 60%;
 }
 
-.wrapper input[type='text'],
+#plugin_settings input[type='text'],
+#plugin_settings textarea {
+  width: 60%;
+  margin-bottom: 0;
+}
+
+#plugin_settings input[type='text'],
 textarea {
   border: 1px solid #ccc;
   outline: none;
@@ -75,13 +88,43 @@ input:disabled {
   height: 100px;
 }
 
-.wrapper img {
+#plugin_settings img {
   max-width: 100%;
 }
 
+/* Settings sections buttons */
+
+#plugin_settings #settings-sections {
+  display: flex;
+}
+
+#plugin_settings #settings-sections li {
+  padding: 0.25rem;
+}
+
+#plugin_settings #settings-sections li a {
+  background: #fff;
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 2px solid #135e96;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  outline: none;
+  color: #333;
+}
+
+#plugin_settings #settings-sections li a.current {
+  background: #135e96;
+  border-color: #135e96;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+}
+
 @media screen and (max-width: 768px) {
-  .wrapper input[type='text'],
-  .wrapper textarea {
+  #plugin_settings input[type='text'],
+  #plugin_settings textarea,
+  #plugin_settings .description {
     width: 100%;
   }
 }

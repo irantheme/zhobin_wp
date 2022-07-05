@@ -1,11 +1,11 @@
 /*
 Theme Name: ایران تم - ژوبین
-Theme URI: https://zhaket.com/store/web/irantheme
+Theme URI: https://irantheme.com/
 Author: the IRANTHEME team
 Author URI: https://irantheme.com/
-Description: قالب وبلاگی وردپرس
-Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
-Version: 1.0
+Description: قالب وبلاگ وردپرس
+Tags: قالب وبلاگ وردپرس, قالب شخصی وردپرس, قالب عکاسی وردپرس
+Version: 1.1
 Text Domain: zhobin
 */
 
@@ -282,15 +282,18 @@ body {
   margin-bottom: 1rem;
 }
 
-#header .showcase .social-networks a {
+#header .showcase .social-networks li {
   display: inline-block;
   margin: 0.5rem;
+}
+
+#header .showcase .social-networks li a {
   color: var(--bs-gray-300);
   font-size: 0.9rem;
   position: relative;
 }
 
-#header .showcase .social-networks a::after {
+#header .showcase .social-networks li a::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -306,13 +309,13 @@ body {
   transition: 0.3s;
 }
 
-#header .showcase .social-networks a:hover::after {
+#header .showcase .social-networks li a:hover::after {
   -webkit-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
-#header .showcase .social-networks a:hover {
+#header .showcase .social-networks li a:hover {
   color: var(--bs-teal);
 }
 
@@ -1397,21 +1400,27 @@ body {
   padding: 1rem 0;
 }
 
-#footer .social a {
+#footer .social li {
+
+}
+
+#footer .social li a {
   background: var(--bs-gray-800);
   color: var(--bs-gray-400);
   font-size: 0.9rem;
   width: 2.5rem;
   height: 2.5rem;
-  line-height: 2.5rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#footer .social a:not(:last-child) {
+#footer .social li:not(:last-child) {
   margin-left: 0.5rem;
 }
 
-#footer .social a:hover {
+#footer .social li a:hover {
   opacity: 0.8;
 }
 
@@ -2166,6 +2175,26 @@ input[type='text']::-webkit-search-cancel-button {
 
 .comment-notes {
   font-size: 0.9rem;
+}
+
+.comment-reply-title {
+  display: none;
+}
+
+.logged-in-as {
+  display: none;
+}
+
+.comment-form-comment label {
+  margin-top: 0;
+}
+
+p.form-submit {
+  margin-bottom: 0;
+}
+
+#language-switcher-locales {
+  margin: 1rem auto !important;
 }
 
 /* Pagination */
